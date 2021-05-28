@@ -85,6 +85,8 @@ In this section you will need to know.
   * The kube config file.
   * try to create a secret file in jenkins with your configuration file
 
+> **Note:** Make sure you have the different branches on your host application repository
+
 
 #### How to deploy to Kubernetes.
 
