@@ -67,3 +67,8 @@ All contributions are welcome. If you are interested in seeing a particular feat
 
 The application is still under building and will be completed in due time. Meanwhile the major part of the application has been completed. 
 
+## How can I thank you?
+Why not star the Github repo? I'd love the attention! Why not share the link for this repository on Twitter,Hackernews or Destructoid ? Spread the word!
+
+Don't forget to follow me on [twitter](https://twitter.com/SamuelArogbonlo). Also, you could see other things I do in the software enviroment via my [website](https://samuelarogbonlo.github.io/)
+
