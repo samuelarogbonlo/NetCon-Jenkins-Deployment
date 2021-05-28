@@ -2,8 +2,9 @@
 
 This repository contains an API that is used to convert some networking stuff (cidr to mask, mask to cidr and many others). 
 
+It also displays how a simple application could be maintained useing CI/CD on Jenkins and of course Kuberntes for application management and hosting on AWS. 
 
-![](interview-infra.png "Your Infra")
+![jenkins Deploy-1](https://user-images.githubusercontent.com/47984109/119967755-9c22cc00-bfa4-11eb-82e3-247eed3aeaa9.png)
 
 
 ## Application Overview
