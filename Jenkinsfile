@@ -18,14 +18,14 @@ pipeline {
     stage('Build Image') {
       steps {
         sh 'echo "docker build phase"'
-        sh 'docker build -f cidr_convert_api/python/Dockerfile -t wizelinedevops/samuel:${BUILD_NUMBER} .'
+        sh 'docker build -f cidr_convert_api/python/Dockerfile -t name/samuel:${BUILD_NUMBER} .'
       }
     }
 
     stage('Push Image') {
       steps{
         sh 'echo "Pushing Image to Docker Hub"'
-        sh 'docker push wizelinedevops/samuel:${BUILD_NUMBER}'
+        sh 'docker push name/samuel:${BUILD_NUMBER}'
       }
     }   
     stage('Deploy to Dev') {
@@ -35,7 +35,7 @@ pipeline {
       }
       
       steps {
-        sh 'kubectl --kubeconfig=${KUBECONFIG} --namespace=${DEV_ENVIRONMENT} --record deployment/api set image deployment/api api=wizelinedevops/samuel:${BUILD_NUMBER}' 
+        sh 'kubectl --kubeconfig=${KUBECONFIG} --namespace=${DEV_ENVIRONMENT} --record deployment/api set image deployment/api api=name/samuel:${BUILD_NUMBER}' 
       }
     }
 
@@ -46,7 +46,7 @@ pipeline {
           KUBECONFIG = credentials('kubeconfig')
       }
       steps {
-        sh 'kubectl --kubeconfig=${KUBECONFIG} --namespace=${STAGING_ENVIRONMENT} --record deployment/api set image deployment/api api=wizelinedevops/samuel:${BUILD_NUMBER}' 
+        sh 'kubectl --kubeconfig=${KUBECONFIG} --namespace=${STAGING_ENVIRONMENT} --record deployment/api set image deployment/api api=name/samuel:${BUILD_NUMBER}' 
       }
     }
 
@@ -58,7 +58,7 @@ pipeline {
           KUBECONFIG = credentials('kubeconfig')
       }
       steps {
-        sh 'kubectl --kubeconfig=${KUBECONFIG} --namespace=${PROD_ENVIRONMENT} --record deployment/api set image deployment/api api=wizelinedevops/samuel:${BUILD_NUMBER}' 
+        sh 'kubectl --kubeconfig=${KUBECONFIG} --namespace=${PROD_ENVIRONMENT} --record deployment/api set image deployment/api api=name/samuel:${BUILD_NUMBER}' 
       }
     }
   }
