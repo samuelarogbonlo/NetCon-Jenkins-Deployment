@@ -1,29 +1,17 @@
-# Wizeline DevOps task
+# NetCon-Jenkins-Deployment
 
-Welcome to the Wizeline DevOps task.
+This repository contains an API that is used to convert some networking stuff (cidr to mask, mask to cidr and many others). 
 
-This repository contains an API skeleton where you can add your code,
-choose the language of your preference.
 
-## What do we expect from you?
+![](interview-infra.png "Your Infra")
 
-* Demonstrate you have great coding and operation skills, no matter which
-technology stack is used.
-
-* This is not an exam, this is more a task that has been assigned to you,
-so you can ask us at anytime.
-
-* Communication is important, if you don't have technical problems make sure
-to share your progress.
 
 ## Application Overview
 
-You need to complete a functionality in our API that provides some help to
-the networking team.
-
-The API has 3 missing endpoints, the first endpoint converts Subnet Mast to
-CIDR format, the second endpoint return the CIDR value of a given Subnet Mask
-and finally the third endpoint simply validates an IPv4.
+The API has 3 endpoints as follows:
+- First endpoint converts Subnet Mast to CIDR format
+- Second endpoint return the CIDR value of a given Subnet Mask
+- Third endpoint simply validates an IPv4.
 
 e.g.
 
@@ -56,60 +44,25 @@ curl localhost/ip-validation?value=255.255.0.0
 
 ```
 
-
-## What do you need to do?
-
-### Coding
-  * Complete the following endpoints.
-   - `/mask-to-cidr?value=<VALUE>`
-   - `/cidr-to-mask?value=<VALUE>`
-  * The following endpoint is not required for this phase.
-   - `/ip-validation?value=<VALUE>`
-  * Make sure your tests are passing
-  * Add missing tests
-  * You should pick one from a list of available languages.
-    - [Python](cidr_convert_api/python)
-    - [Go](cidr_convert_api/go)
-    - [Java](cidr_convert_api/java)
-    - [NodeJS](cidr_convert_api/node)
-    - [Ruby](cidr_convert_api/ruby)
-
 ### Continuous Integration
-  * Define a CI pipeline.
-  * Ideally the pipelines must be checked in code (Jenkinsfile or Scripts).
-  * Automate your tests every time a change is pushed to the repository.
-    - Avoid buggy code to be deployed.
-  * Build your artifacts (docker images) and store them in a registry
-    with appropriate tagging.
-  * Protect your branches.
-
+  * There is a CI pipeline on Jenkins
+  * Ideally the pipelines are checked in code (Jenkinsfile or Scripts).
+  * Tets are automated that every time a change is pushed to the repository, the CI builds
+  * The artifacts (Docker Image) are stored in a registrywith appropriate tagging.
+  * Each of the branches are protected.
+  
 ### Continuous Delivery
 
-  * Define your CD pipeline.
-  * Deploy to your Production Environment based on your defined strategy.
-  * Manage stage as production.
-  * Deploy to your Testing Environment before deploying to stage or production.
-  * Deploy with no downtime in production.
+  * The CD pipeline is already defined and prod/test enviroment deployed.
+  * Deployed with no expected downtime in production.
 
 ## Infrastructure Management
 
-  You will have access to the following:
+  You will need to have access to the following from your own end:
 
   * Jenkins server
   * Kubernetes Cluster
 
-### How to access the infrastructure:
-  * During the Task Presentation, the Wizeline team will provide:
-    - Jenkins address, username and password.
-    - Credentials for the kubernetes cluster.
-
-### Using Jenkins
-
- * URL: http://jenkins-your-name.interviews.wize.mx
- 
-   Example: http://jenkins-john-doe.interviews.wize.mx
- * User: `admin`
- * Password: `bNmAZkd69hc8Yjhfsetgcj2dJH`
 
 > **Note:** Be aware that the installation of some plugins may cause a missconfiguration of the Jenkins server and your work will be lost.
 
@@ -121,14 +74,7 @@ curl localhost/ip-validation?value=255.255.0.0
  docker build -t <your-name>:some-tag .
 ```
 
-  * You will need to push data to a remote docker registry, for this you will
-  need to do the following
-
-```
- docker tag my-image:some-tag wizelinedevops/<your-name>:some-tag
- docker push wizelinedevops/<your-name>:some-tag
-```
-> **Note:** This only works from jenkins.
+  * You will need to push data to a remote docker registry. 
 
 ### Deploying to Kubernetes
 
@@ -136,13 +82,7 @@ In this section you will need to know.
 
   * How to deploy to kubernetes.
   * The kube config file.
-  * The candidate must create a secret file in jenkins with the provided
-  configuration file and use it as a parameter for `kubectl`.
-    - Jenkins > Credentials > System > Global Credentials
-    - [Jenkins Security](https://jenkins.interviews.wize.mx/credentials/store/system/domain/_/)
-
-    ![](jenkins-security.png "Jenkins Security")
-
+  * try to create a secret file in jenkins with your configuration file
 
 
 #### How to deploy to Kubernetes.
@@ -152,7 +92,7 @@ In this section you will need to know.
 
   * Update the version of the image in the kubernetes cluster, e.g.:
     - `kubectl --kubeconfig=${KUBECONFIG} --namespace=<ENVIRONMENT>
-    set image deployment/api api=wizelinedevops/api:tag`
+    set image deployment/api api=name/api:tag`
 
 > **Note:** This only works from jenkins.
 
@@ -162,6 +102,3 @@ In this section you will need to know.
 * Stage: `staging-api-<your-name>.interviews.wize.mx`
 * Production: `production-api-<your-name>.interviews.wize.mx`
 
-### How your Infrastructure looks like.
-
-![](interview-infra.png "Your Infra")
